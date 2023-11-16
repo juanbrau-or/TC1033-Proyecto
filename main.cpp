@@ -1,37 +1,28 @@
 #include <iostream>
-#include "atleta.h"
 #include "equipo.h"
-#include "deporte.h"
+#include "empleado.h"
 
 int main() {
-    Atleta giannelli;
+    Equipo borregos("Borregos", 5);
+    Atleta braulio("Braulio",1.70, 63);
+    Atleta victor(1.8,66,"Victor","Sin equipo",0,0);
+    Entrenador alejandro(.65,"Alejandro","Sin equipo",2,5500);
 
-    giannelli.set_nombre("Simone Giannelli");
-    giannelli.set_peso(89);
-    giannelli.set_estatura(2);
+    borregos.contrataAtleta(braulio);
+    borregos.contrataAtleta(victor);
+    borregos.contrataEntrenador(alejandro);
 
-    std::cout << "Nombre jugador: " << giannelli.get_nombre() << std::endl;
-    std::cout << "Peso: " << giannelli.get_peso() << std::endl;
-    std::cout << "Estatura: " << giannelli.get_estatura() << std::endl;
+    borregos.imprimeJugadores();
 
-    std::cout << std::endl;
+    braulio.imprimeDatos();
+    victor.imprimeDatos();
 
-    Equipo modena;
-    modena.set_nombre("Modena Volley");
-    modena.set_numJugadores(12);
+    alejandro.imprimeDatos();
+    borregos.despideEntrenador(alejandro);
+    alejandro.imprimeDatos();
 
-    std::cout << "Nombre equipo: " << modena.get_nombre() << std::endl;
-    std::cout << "No. de jugadores: " << modena.get_numJugadores() << std::endl;
-    std::cout << std::endl;
-
-    Deporte voleibol;
-    voleibol.set_nombre("Voleibol");
-    voleibol.set_espectadores(91989876888);
-    voleibol.set_equipos(16);
-
-    std::cout << "Nombre deporte: " << voleibol.get_nombre() << std::endl;
-    std::cout << "No. de equipos: " << voleibol.get_numEquipos() << std::endl;
-    std::cout << "No. de espectadores: " << voleibol.get_numEspectadores() << std::endl;
-
+    borregos.vendeAtleta(braulio);
+    braulio.imprimeDatos();
+    borregos.imprimeJugadores();
     return 0;
 }
