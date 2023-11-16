@@ -1,2 +1,7 @@
 # TC1033-Proyecto
-Con estos códigos se pretende tener un registro de los jugadores en distintos equipos de distintos deportes, teniendo un perfil para cada jugador, equipo y deporte. Con posibilidad de hacer transferencias, consultar estadísticas, etc.
+
+# Contexto
+Una liga de voleibol local quiere tener un registro de los equipos participantes, así como de jugadores y entrenadores, pudiendo consultar y modificar las estadísticas de cada uno. La principal diferencia entre las estadísticas de los atletas y los entrenadores es que en los primeros es importante datos físicos como su estatura y peso, mientras que el índice de victorias de los entrenadores es más importante.
+
+# Funcionalidad
+El programa permite consultar y modificar las estadísticas de jugadores y entrenadores mediante getters y setters. Se pueden consultar y modificar las estadísticas de los equipos, así como pueden contratar atletas y entrenadores, o vender atletas y despedir a su entrenador.
