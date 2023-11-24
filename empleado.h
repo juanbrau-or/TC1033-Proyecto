@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 class Empleado {
 protected:
@@ -21,7 +22,7 @@ public:
     void cambiaEquipo(std::string);
     void setCampeonatos(int);
     void aumentaCampeonatos();
-    bool operator <(const Empleado& st) const{ //sort using nombre,
+    bool operator <(const Empleado& st) const{ //sort using nombre
       return (this->nombre < st.nombre);
    }
 };
@@ -82,6 +83,7 @@ public:
     void setEstatura(float);
     void setPeso(float);
     void imprimeDatos();
+    std::string toString();
 };
 
 Atleta::Atleta(std::string name, float height, float weight) {
@@ -126,6 +128,19 @@ void Atleta::imprimeDatos() {
     std::cout << std::endl;
 }
 
+std::string Atleta::toString() {
+    std::stringstream aux;
+    aux << "Datos atleta" << std::endl;
+    aux << "Nombre: " << getNombre() << std::endl;
+    aux << "Estatura: " << getEstatura() << std::endl;
+    aux << "Peso: " << getPeso() << std::endl;
+    aux << "Equipo: " << getEquipo() << std::endl;
+    aux << "Campeonatos: " << getCampeonatos() << std::endl;
+    aux << "Salario: " << getSalario() << std::endl;
+    aux << std::endl;
+    return aux.str();
+}
+
 class Entrenador: public Empleado {
 private:
     float indiceVictorias;
@@ -136,6 +151,7 @@ public:
     float getIndiceVictorias();
     void setIndiceVictorias(float);
     void imprimeDatos();
+    std::string toString();
 };
 
 Entrenador::Entrenador(float inVic, std::string name, std::string team, int champs, float sal) {
@@ -163,5 +179,19 @@ void Entrenador::imprimeDatos() {
     std::cout << "Salario: " << getSalario() << std::endl;
     std::cout << std::endl;
 }
+
+std::string Entrenador::toString() {
+    std::stringstream aux;
+    aux << "Datos entrenador" << std::endl;
+    aux << "Nombre: " << getNombre() << std::endl;
+    aux << "Indice de victorias: " << getIndiceVictorias() << std::endl;
+    aux << "Equipo: " << getEquipo() << std::endl;
+    aux << "Campeonatos: " << getCampeonatos() << std::endl;
+    aux << "Salario: " << getSalario() << std::endl;
+    aux << std::endl;
+    return aux.str();
+}
+
+
 
 #endif // EMPLEADO_H_
