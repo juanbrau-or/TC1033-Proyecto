@@ -12,14 +12,16 @@ private:
     int campeonatos;
     std::set<Atleta> jugadores;
     Entrenador entrenador;
+    Entrenador* pEntrenador;
 public:
-    Equipo():nombre(""),campeonatos(0),entrenador(Entrenador()){};
-    Equipo(std::string name, int champs):nombre(name),campeonatos(champs),entrenador(Entrenador()){};
+    Equipo():nombre(""),campeonatos(0),entrenador(Entrenador()),pEntrenador(NULL){};
+    Equipo(std::string name, int champs):nombre(name),campeonatos(champs),entrenador(Entrenador()),pEntrenador(NULL){};
     Equipo(std::string name, int champs, Entrenador& trainer);
     std::string getNombre();
     int getCampeonatos();
     std::set<Atleta> getJugadores();
     Entrenador getEntrenador();
+    int getSumaSalarios();
     void imprimeJugadores();
     void setNombre(std::string);
     void aumentaCampeonatos();
@@ -27,7 +29,8 @@ public:
     void contrataAtleta(Atleta&);
     void vendeAtleta(Atleta&);
     void contrataEntrenador(Entrenador&);
-    void despideEntrenador(Entrenador&);
+    void despideEntrenador();
+    std::string toString();
 };
 
 Equipo::Equipo(std::string name, int champs, Entrenador& trainer) {
@@ -35,6 +38,7 @@ Equipo::Equipo(std::string name, int champs, Entrenador& trainer) {
     campeonatos = champs;
     entrenador = trainer;
     trainer.cambiaEquipo(getNombre());
+    pEntrenador = &trainer;
 }
 
 std::string Equipo::getNombre() {
@@ -51,6 +55,14 @@ std::set<Atleta> Equipo::getJugadores() {
 
 Entrenador Equipo::getEntrenador() {
     return entrenador;
+}
+
+int Equipo::getSumaSalarios() {
+    int suma = entrenador.getSalario();
+    for ( Atleta jug:jugadores ) {
+        suma+=jug.getSalario();
+    }
+    return suma;
 }
 
 void Equipo::imprimeJugadores() {
@@ -86,11 +98,25 @@ void Equipo::vendeAtleta(Atleta& jugador) {
 void Equipo::contrataEntrenador(Entrenador& trainer) {
     entrenador = trainer;
     trainer.cambiaEquipo(getNombre());
+    pEntrenador = &trainer;
 }
 
-void Equipo::despideEntrenador(Entrenador& trainer) {
-    trainer.cambiaEquipo("Sin equipo");
+void Equipo::despideEntrenador() {
+    Entrenador trainer = *pEntrenador;
+    (*pEntrenador).cambiaEquipo("Sin equipo");
     entrenador = Entrenador();
+}
+
+std::string Equipo::toString() {
+    std::stringstream aux;
+    aux << nombre << std::endl;
+    aux << entrenador.toString();
+    aux << "Lista de jugadores: " << std::endl;
+    for( Atleta jug:jugadores ) {
+        aux << jug.toString();
+    }
+    aux << "-------------" << std::endl;
+    return aux.str();
 }
 
 #endif // EQUIPO_H_
