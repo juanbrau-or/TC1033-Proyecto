@@ -12,17 +12,14 @@ int main() {
     borregos.contrataAtleta(victor);
     borregos.contrataEntrenador(alejandro);
 
-    borregos.imprimeJugadores();
+    std::cout << borregos.toString();
 
-    braulio.imprimeDatos();
-    victor.imprimeDatos();
-
-    alejandro.imprimeDatos();
-    borregos.despideEntrenador(alejandro);
-    alejandro.imprimeDatos();
+    std::cout << alejandro.toString();
+    borregos.despideEntrenador();
+    std::cout << alejandro.toString();
 
     borregos.vendeAtleta(braulio);
-    braulio.imprimeDatos();
-    borregos.imprimeJugadores();
+    std::cout << braulio.toString();
+    std::cout << borregos.toString();
     return 0;
 }
