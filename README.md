@@ -9,3 +9,6 @@ El programa permite consultar y modificar las estadísticas de jugadores y entre
 # Correcciones
 Se eliminó la clase deporte, y se agregó la clase empleado y entrenador, y se agregaron atributos y funciones a cada una de las clases.
 El main se actualizó para mostrar un nuevo ejemplo de funcionamiento del programa.
+
+Se agregaron las funciones toString a cada una de las clases.
+Se eliminó la necesidad de especificar el entrenador al despedirlo en la clase equipo.
