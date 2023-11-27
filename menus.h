@@ -6,6 +6,11 @@
 #include <vector>
 #include <set>
 
+/*
+ * Detecta si el comando ingresado es un numero
+ * @param string s
+ * @return bool: regresa true si la string era un numero
+*/
 bool isNumber(std::string &s) {
     for (char &ch : s) {
         if (std::isdigit(ch) == 0)
@@ -14,12 +19,18 @@ bool isNumber(std::string &s) {
     return true;
 }
 
+/*
+ * crea un atleta nuevo, dando distintas opciones para inicializarlo con distintos valores
+ * y lo agrega al vector con los demás atletas
+ * @param vector<Atleta>
+ * @return
+*/
 void crear_jugador(std::vector<Atleta> &jugadores) {
     std::cout << "Seleccione la opcion segun los datos disponibles del jugador" << std::endl;
     std::cout << "1. Ningun dato disponible" << std::endl;
     std::cout << "2. Estatura y peso" << std::endl;
     std::cout << "3. Nombre, estatura y peso" << std::endl;
-    std::cout << "4. Nombre, estatura, peso, equipo, campeonatos y salario" << std::endl;
+    std::cout << "4. Nombre, estatura, peso, campeonatos y salario" << std::endl;
     std::cout << "0. Cancelar" << std::endl << std::endl;
     std::string aux;
     bool continua = true;
@@ -56,7 +67,6 @@ void crear_jugador(std::vector<Atleta> &jugadores) {
         else if( aux == "4" ) {
             // Atleta(float height,float weight,std::string name,std::string team,int champs,float sal);
             std::string nombre;
-            std::string team;
             int campeonatos;
             float estatura, peso, salario;
             std::cout << "Ingrese el nombre del jugador: ";
@@ -66,14 +76,11 @@ void crear_jugador(std::vector<Atleta> &jugadores) {
             std::cin >> estatura;
             std::cout << "Ingrese el peso del jugador: ";
             std::cin >> peso;
-            std::cout << "Ingrese el equipo del jugador: ";
-            fflush(stdin);
-            getline(std::cin, team);
             std::cout << "Ingrese la cantidad de campeonatos del jugador: ";
             std::cin >> campeonatos;
             std::cout << "Ingrese el salario del jugador: ";
             std::cin >> salario;
-            jugadores.push_back(Atleta(estatura, peso, nombre, team, campeonatos, salario));
+            jugadores.push_back(Atleta(estatura, peso, nombre, campeonatos, salario));
         }
         else {
             std::cout << "Comando invalido, intente de nuevo" << std::endl;
@@ -83,11 +90,17 @@ void crear_jugador(std::vector<Atleta> &jugadores) {
     return;
 }
 
+/*
+ * crea un entrenador nuevo, dando distintas opciones para inicializarlo con distintos valores
+ * y lo agrega al vector con los demás entrenadores
+ * @param vector<Entrenador>
+ * @return
+*/
 void crear_entrenador(std::vector<Entrenador> &entrenadores) {
     std::cout << "Seleccione la opcion segun los datos disponibles del jugador" << std::endl;
     std::cout << "1. Ningun dato disponible" << std::endl;
     std::cout << "2. Nombre" << std::endl;
-    std::cout << "3. Nombre, equipo, numero de campeonatos y salario" << std::endl;
+    std::cout << "3. Nombre, numero de campeonatos y salario" << std::endl;
     std::cout << "0. Cancelar" << std::endl << std::endl;
     std::string aux;
     bool continua = true;
@@ -111,21 +124,18 @@ void crear_entrenador(std::vector<Entrenador> &entrenadores) {
         else if( aux == "3" ) {
             //Entrenador(float inVic,std::string name,std::string team,int champs,float sal);
             float indiceVictorias, salario;
-            std::string nombre, team;
+            std::string nombre;
             int campeonatos;
             std::cout << "Ingrese el nombre del entrenador: ";
             fflush(stdin);
             getline(std::cin, nombre);
-            std::cout << "Ingrese el equipo del entrenador: ";
-            fflush(stdin);
-            getline(std::cin, team);
             std::cout << "Ingrese el indice de victorias del entrenador: ";
             std::cin >> indiceVictorias;
             std::cout << "Ingrese la cantidad de campeonatos del entrenador: ";
             std::cin >> campeonatos;
             std::cout << "Ingrese el salario del entrenador: ";
             std::cin >> salario;
-            entrenadores.push_back(Entrenador(indiceVictorias, nombre, team, campeonatos, salario));
+            entrenadores.push_back(Entrenador(indiceVictorias, nombre, campeonatos, salario));
         }
         else {
             std::cout << "Comando invalido, intente de nuevo" << std::endl;
@@ -135,6 +145,12 @@ void crear_entrenador(std::vector<Entrenador> &entrenadores) {
     return;
 }
 
+/*
+ * crea un equipo nuevo, dando distintas opciones para inicializarlo con distintos valores
+ * y lo agrega al vector con los demás equipos
+ * @param vector<Equipo>
+ * @return
+*/
 void crear_equipo(std::vector<Equipo> &equipos) {
     std::cout << "Seleccione la opcion segun los datos disponibles del jugador" << std::endl;
     std::cout << "1. Ningun dato disponible" << std::endl;
@@ -170,6 +186,12 @@ void crear_equipo(std::vector<Equipo> &equipos) {
     return;
 }
 
+/*
+ * permite consultar las estadisticas de un jugador mediante setters
+ * pregunta cual jugador quiere preguntar y despues muestra los posibles atributos a consultar
+ * @param vector<Atleta>
+ * @return
+*/
 void consultar_jugador(std::vector<Atleta> &jugadores) {
     std::cout << "Lista de jugadores: " << std::endl;
     int cnt = 1;
@@ -241,6 +263,12 @@ void consultar_jugador(std::vector<Atleta> &jugadores) {
     return;
 }
 
+/*
+ * permite consultar las estadisticas de un entrenador mediante setters
+ * pregunta cual entrenador quiere preguntar y despues muestra los posibles atributos a consultar
+ * @param vector<Entrenador>
+ * @return
+*/
 void consultar_entrenador(std::vector<Entrenador> &entrenadores) {
     std::cout << "Lista de entrenadores: " << std::endl;
     int cnt = 1;
@@ -309,6 +337,12 @@ void consultar_entrenador(std::vector<Entrenador> &entrenadores) {
     return;
 }
 
+/*
+ * permite consultar las estadisticas de un equipo mediante setters
+ * pregunta cual equipo quiere preguntar y despues muestra los posibles atributos a consultar
+ * @param vector<Equipo>
+ * @return
+*/
 void consultar_equipo(std::vector<Equipo> &equipos) {
     std::cout << "Lista de equipos: " << std::endl;
     int cnt = 1;
@@ -374,6 +408,12 @@ void consultar_equipo(std::vector<Equipo> &equipos) {
     return;
 }
 
+/*
+ * permite modificar a distintos atletas mediante setters, primero muestra
+ * los atletas a modificar y despues los posibles atributos
+ * @param vector<Atleta>
+ * @return
+*/
 void modificar_jugador(std::vector<Atleta> &jugadores) {
     std::cout << "Lista de jugadores: " << std::endl;
     int cnt = 1;
@@ -460,6 +500,12 @@ void modificar_jugador(std::vector<Atleta> &jugadores) {
     return;
 }
 
+/*
+ * permite modificar a distintos entrenadores mediante setters, primero muestra
+ * los entrenadores a modificar y despues los posibles atributos
+ * @param vector<Entrenador>
+ * @return
+*/
 void modificar_entrenador(std::vector<Entrenador> &entrenadores) {
     std::cout << "Lista de entrenadores: " << std::endl;
     int cnt = 1;
@@ -539,6 +585,13 @@ void modificar_entrenador(std::vector<Entrenador> &entrenadores) {
     return;
 }
 
+/*
+ * permite modificar a distintos equipos mediante setters, primero muestra
+ * los equipos a modificar y despues los posibles atributos
+ * solo desde aqui pueden cambiarse el equipo en los que se encuentran los empleados
+ * @param vector<Equipo>
+ * @return
+*/
 void modificar_equipo(std::vector<Equipo> &equipos, std::vector<Atleta> &jugadores, std::vector<Entrenador> &entrenadores) {
     std::cout << "Lista de equipos: " << std::endl;
     int cnt = 1;
