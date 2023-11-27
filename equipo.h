@@ -67,8 +67,10 @@ int Equipo::getSumaSalarios() {
 
 void Equipo::imprimeJugadores() {
     std::cout << "Lista de jugadores: " << std::endl;
+    int cnt = 1;
     for( Atleta jug:jugadores ) {
-        std::cout << jug.getNombre() << std::endl;
+        std::cout << cnt << ". " << jug.getNombre() << std::endl;
+        cnt++;
     }
     std::cout << std::endl;
 }
@@ -96,6 +98,8 @@ void Equipo::vendeAtleta(Atleta& jugador) {
 }
 
 void Equipo::contrataEntrenador(Entrenador& trainer) {
+    if( pEntrenador != NULL )
+        despideEntrenador();
     entrenador = trainer;
     trainer.cambiaEquipo(getNombre());
     pEntrenador = &trainer;
@@ -105,17 +109,19 @@ void Equipo::despideEntrenador() {
     Entrenador trainer = *pEntrenador;
     (*pEntrenador).cambiaEquipo("Sin equipo");
     entrenador = Entrenador();
+    pEntrenador = NULL;
 }
 
 std::string Equipo::toString() {
     std::stringstream aux;
     aux << nombre << std::endl;
+    aux << "Numero de campeonatos: " << campeonatos << std::endl;
     aux << entrenador.toString();
     aux << "Lista de jugadores: " << std::endl;
     for( Atleta jug:jugadores ) {
         aux << jug.toString();
     }
-    aux << "-------------" << std::endl;
+    aux << std::endl;
     return aux.str();
 }
 

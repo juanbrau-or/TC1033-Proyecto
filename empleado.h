@@ -137,7 +137,6 @@ std::string Atleta::toString() {
     aux << "Equipo: " << getEquipo() << std::endl;
     aux << "Campeonatos: " << getCampeonatos() << std::endl;
     aux << "Salario: " << getSalario() << std::endl;
-    aux << std::endl;
     return aux.str();
 }
 
@@ -146,13 +145,21 @@ private:
     float indiceVictorias;
 public:
     Entrenador():Empleado(),indiceVictorias(0){};
-    Entrenador(float inVic):Empleado(),indiceVictorias(inVic){};
+    Entrenador(std::string name);
     Entrenador(float inVic,std::string name,std::string team,int champs,float sal);
     float getIndiceVictorias();
     void setIndiceVictorias(float);
     void imprimeDatos();
     std::string toString();
 };
+
+Entrenador::Entrenador(std::string name) {
+    indiceVictorias = 0;
+    nombre = name;
+    equipo = "Sin equipo";
+    campeonatos = 0;
+    salario = 0;
+}
 
 Entrenador::Entrenador(float inVic, std::string name, std::string team, int champs, float sal) {
     indiceVictorias = inVic;
@@ -188,10 +195,7 @@ std::string Entrenador::toString() {
     aux << "Equipo: " << getEquipo() << std::endl;
     aux << "Campeonatos: " << getCampeonatos() << std::endl;
     aux << "Salario: " << getSalario() << std::endl;
-    aux << std::endl;
     return aux.str();
 }
-
-
 
 #endif // EMPLEADO_H_
