@@ -12,3 +12,5 @@ El main se actualizó para mostrar un nuevo ejemplo de funcionamiento del progra
 
 Se agregaron las funciones toString a cada una de las clases.
 Se eliminó la necesidad de especificar el entrenador al despedirlo en la clase equipo.
+
+Se agregó el archivo menu.h para poder interactuar con el usuario.
