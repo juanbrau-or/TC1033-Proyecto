@@ -14,3 +14,5 @@ Se agregaron las funciones toString a cada una de las clases.
 Se eliminó la necesidad de especificar el entrenador al despedirlo en la clase equipo.
 
 Se agregó el archivo menu.h para poder interactuar con el usuario.
+
+Se agregaron comentarios para explicar las funciones
